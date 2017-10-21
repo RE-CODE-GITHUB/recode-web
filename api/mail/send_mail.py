@@ -8,7 +8,7 @@ from email.utils import formatdate
 from email.utils import formataddr
 from email.header import Header
 
-def send_mail(text, title):
+def send_mail(title, text):
     # メールを送る
     to = settings.MAIL_TO
     subject = title
@@ -22,7 +22,6 @@ def send_via_gmail(to, subject, text):
     smtp.ehlo()
     smtp.starttls()
     smtp.ehlo()
-    print(from_addr, settings.MAIL_PASS)
     smtp.login(from_addr, settings.MAIL_PASS)
     smtp.sendmail(from_addr, [to], message.as_string())
     smtp.close()

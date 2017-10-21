@@ -1,5 +1,5 @@
 # recode-web
-[recode.tokyo](http://recode.tokyo/)  
+[recode.tokyo](https://recode.tokyo/)  
 
 ## 誰でもプルリク可能！  
 誰でも送ってください！  
@@ -13,4 +13,11 @@ dbはsqlite3を使用し、各ディレクトリごとに作成する。
 ```
 composer install
 ```
+
+## docker
+[このリポジトリが動くdocker環境](https://github.com/RE-CODE-GITHUB/recode-web-docker)  
+
+
+## Using
+[AltoRouter](https://github.com/dannyvankooten/AltoRouter)
 

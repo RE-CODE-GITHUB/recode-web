@@ -1,10 +1,7 @@
 <?php
-  require 'vendor/autoload.php';
-  $router = new AltoRouter();
-  $router->map( 'GET', '/', function() {
-      require __DIR__ . '/page/home/index.html';
-  });
-  $match = $router->match();
+  require_once(__DIR__ . "/routing.php");
+  
+  $match = routing();
   if( $match && is_callable( $match['target'] ) ) {
       call_user_func_array( $match['target'], $match['params'] ); 
   } else {
