@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 import json
 import mail_conf as settings
 import smtplib
@@ -7,13 +8,13 @@ from email.utils import formatdate
 from email.utils import formataddr
 from email.header import Header
 
-def send_error_message_to_mail(self, text):
+def send_mail(text, title):
     # メールを送る
-    to = "tomonobu_hukumoto@gochipon.co.jp"
-    subject = "コミックスクレイピング通知"
+    to = settings.MAIL_TO
+    subject = title
     send_via_gmail(to, subject, text)
 
-def send_via_gmail(self, to, subject, text):
+def send_via_gmail(to, subject, text):
     # smtpにてメール送信
     from_addr = settings.MAIL_FROM
     message = create_message(to, from_addr, subject, text)
@@ -21,11 +22,12 @@ def send_via_gmail(self, to, subject, text):
     smtp.ehlo()
     smtp.starttls()
     smtp.ehlo()
+    print(from_addr, settings.MAIL_PASS)
     smtp.login(from_addr, settings.MAIL_PASS)
     smtp.sendmail(from_addr, [to], message.as_string())
     smtp.close()
 
-def create_message(self, to, from_addr, subject, body):
+def create_message(to, from_addr, subject, body):
     # メッセージをエンコードして返す
     encoding = 'utf-8'
     sender_name = Header(from_addr, encoding).encode()
@@ -38,4 +40,6 @@ def create_message(self, to, from_addr, subject, body):
     return message
 
 if __name__ == '__main__':
-  print("OK")
+  args = sys.argv
+  send_mail(args[1], args[2])
+
