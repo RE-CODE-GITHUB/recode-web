@@ -1,4 +1,6 @@
 /history
+/vendor
+composer.lock
 .DS_Store
 *sqlite3
 __pycache__/
